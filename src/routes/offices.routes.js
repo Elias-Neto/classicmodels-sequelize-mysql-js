@@ -4,9 +4,9 @@ const router = express.Router()
 const officesController = require('../controllers/officesController')
 
 router.get('/', officesController.getAllOffices)
-router.get('/:id', officesController.getOfficeByOfficeCode)
+router.get('/:officeCode', officesController.getOfficeByOfficeCode)
 router.post('/', officesController.createOffice)
-router.put('/:id', officesController.updateOffice)
-router.delete('/:id', officesController.deleteOffice)
+router.put('/:officeCode', officesController.updateOffice)
+router.delete('/:officeCode', officesController.deleteOffice)
 
 module.exports = router

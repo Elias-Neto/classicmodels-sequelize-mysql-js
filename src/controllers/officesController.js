@@ -6,7 +6,7 @@ const getAllOffices = async (req, res) => {
 }
 
 const getOfficeByOfficeCode = async (req, res) => {
-  const office = await officesRepository.getOfficeByOfficeCode(req.params.id)
+  const office = await officesRepository.getOfficeByOfficeCode(req.params.officeCode)
   return res.json(office)
 }
 
@@ -16,12 +16,12 @@ const createOffice = async (req, res) => {
 }
 
 const updateOffice = async (req, res) => {
-  const office = await officesRepository.updateOffice(req.params.id, req.body)
+  const office = await officesRepository.updateOffice(req.params.officeCode, req.body)
   return res.json({ message: 'Office updated successfully' })
 }
 
 const deleteOffice = async (req, res) => {
-  const office = await officesRepository.deleteOffice(req.params.id)
+  const office = await officesRepository.deleteOffice(req.params.officeCode)
   return res.json({ message: 'Office deleted successfully' })
 }
 
