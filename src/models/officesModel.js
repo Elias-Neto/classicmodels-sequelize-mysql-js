@@ -3,9 +3,10 @@ const { DataTypes } = require('sequelize')
 
 const officesModel = sequelize.define('offices', {
   officeCode: {
-    type: DataTypes.STRING(10),
+    type: DataTypes.INTEGER,
     allowNull: false,
-    primaryKey: true
+    primaryKey: true,
+    autoIncrement: true
   },
   city: {
     type: DataTypes.STRING(50),
@@ -41,7 +42,8 @@ const officesModel = sequelize.define('offices', {
   }
 }, {
   tableName: 'offices',
-  timestamps: false
+  timestamps: true,
+  paranoid: true
 })
 
 module.exports = officesModel
