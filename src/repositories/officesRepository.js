@@ -25,7 +25,7 @@ const updateOffice = async (officeCode, office) => {
 }
 
 const deleteOffice = async (officeCode) => {
-  const deletedOffice = await officeModel.destroy({
+  await officeModel.destroy({
     where: {
       officeCode: officeCode
     }

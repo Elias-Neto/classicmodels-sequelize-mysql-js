@@ -1,3 +1,13 @@
 const sequelize = require('./sequelize')
 
-sequelize.sync({ alter: process.env.NODE_ENV === 'production' ? false : true })
+// Models
+
+const officeModel = require('../models/officesModel')
+const employeeModel = require('../models/employeesModel')
+
+// Realtionships
+
+officeModel.hasMany(employeeModel, { foreignKey: 'officeCode' })
+employeeModel.belongsTo(officeModel, { foreignKey: 'officeCode' })
+
+sequelize.sync({ force: true })
