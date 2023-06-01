@@ -1,41 +1,20 @@
-const employeeModel = require('../models/employeesModel')
+const GenericRepository = require('./genericRepository')
 
-const getAllEmployees = async () => {
-  const employees = await employeeModel.findAll()
-  return employees
-}
+class EmployeesRepository extends GenericRepository {
+  constructor(model) {
+    super(model)
+    this.model = model
+  }
 
-const getEmployeeByEmployeeNumber = async (employeeNumber) => {
-  const employee = await employeeModel.findByPk(employeeNumber)
-  return employee
-}
+  getByEmail = async (email) => {
+    const result = await this.model.findOne({ where: { email } })
 
-const createEmployee = async (employee) => {
-  const newEmployee = await employeeModel.create(employee)
-  return newEmployee
-}
-
-const updateEmployee = async (employeeNumber, employee) => {
-  const updatedEmployee = await employeeModel.update(employee, {
-    where: {
-      employeeNumber: employeeNumber
+    if (!result) {
+      throw { status: 404, message: "Resource not found" }
     }
-  })
-  return updatedEmployee
+
+    return result
+  }
 }
 
-const deleteEmployee = async (employeeNumber) => {
-  await employeeModel.destroy({
-    where: {
-      employeeNumber: employeeNumber
-    }
-  })
-}
-
-module.exports = {
-  getAllEmployees,
-  getEmployeeByEmployeeNumber,
-  createEmployee,
-  updateEmployee,
-  deleteEmployee
-}
+module.exports = EmployeesRepository
