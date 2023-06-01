@@ -16,7 +16,7 @@ app.get('/', (req, res) => {
 
 app.use((err, req, res, next) => {
   console.log(err)
-  res.status(500).json({ message: err.message })
+  res.status(err.status || 500).json({ message: err.message })
 })
 
 app.listen(5000, () => {
