@@ -1,6 +1,7 @@
 class GenericRepository {
-  constructor(model) {
-    this.model = model;
+  constructor(model, pkName) {
+    this.model = model
+    this.pkName = pkName
   }
 
   async getAll() {
@@ -21,14 +22,14 @@ class GenericRepository {
     return await this.model.create(data)
   }
 
-  async update(primaryKeyName, pk, data) {
-    await this.model.update(data, { where: { [primaryKeyName]: pk } })
+  async update(pk, data) {
+    await this.model.update(data, { where: { [this.pkName]: pk } })
     return await this.getByPrimaryKey(pk)
   }
 
-  async delete(primaryKeyName, pk) {
+  async delete(pk) {
     await this.getByPrimaryKey(pk)
-    return await this.model.destroy({ where: { [primaryKeyName]: pk } })
+    return await this.model.destroy({ where: { [this.pkName]: pk } })
   }
 }
 

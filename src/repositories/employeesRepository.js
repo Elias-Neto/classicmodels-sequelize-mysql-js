@@ -1,8 +1,8 @@
 const GenericRepository = require('./genericRepository')
 
 class EmployeesRepository extends GenericRepository {
-  constructor(model) {
-    super(model)
+  constructor(model, pkName) {
+    super(model, pkName)
     this.model = model
   }
 
