@@ -38,7 +38,7 @@ const employeesModel = sequelize.define('employees', {
   }
 }, {
   tableName: 'employees',
-  timestamps: true,
+  timestamps: false,
 })
 
 module.exports = employeesModel

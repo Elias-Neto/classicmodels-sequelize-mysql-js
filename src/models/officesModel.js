@@ -42,8 +42,7 @@ const officesModel = sequelize.define('offices', {
   }
 }, {
   tableName: 'offices',
-  timestamps: true,
-  paranoid: true
+  timestamps: false
 })
 
 module.exports = officesModel
