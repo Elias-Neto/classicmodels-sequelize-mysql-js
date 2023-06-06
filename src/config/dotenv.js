@@ -1,5 +1,5 @@
 const dotenv = require('dotenv')
 
 dotenv.config({
-  path: ".env.local"
+  path: `.env.${process.env.NODE_ENV}.local`,
 })
